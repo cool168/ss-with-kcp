@@ -30,9 +30,9 @@ echo ${SS_SERVER_PWD='cool168'}
 
 client_linux_amd64 -l 127.0.0.1:$LOCAL_PORT -r $KCP_PORT -mode $MODE -mtu $MTU -sndwnd $SNDWND -rcvwnd $RCVWND -crypt $CRYPT -key $KEY -conn $CONN -dscp $DSCP 2>&1 &
 
-echo -e "\033[32mStarting kcptun......\033[0m"
+echo -e "Starting kcptun......"
 
-echo -e "\033[32mStarting shadowsocks......\033[0m"
+echo -e "Starting shadowsocks......"
 
 ss-local -s 127.0.0.1 -p $LOCAL_PORT -b 0.0.0.0 -l $SS_LOCAL_PORT -m $SS_SERVER_METHOD -k $SS_SERVER_PWD -t 60 -u
 
