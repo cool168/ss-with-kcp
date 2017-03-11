@@ -47,6 +47,7 @@ RUN apk upgrade --no-cache \
 ADD kcp2ss-server.sh /kcp2ss-server.sh
 ADD ss2kcp-client.sh /ss2kcp-client.sh
 ADD ss-local.sh /ss-local.sh
+ADD ss-server.sh /ss-server.sh
 RUN chmod +x /*.sh
 
 
