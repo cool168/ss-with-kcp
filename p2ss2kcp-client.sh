@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PRIVOXY_CONF="/privoxy.conf"
+PRIVOXY_CONF="/etc/privoxy/privoxy.conf"
 
 if [ ! -f "$PRIVOXY_CONF" ]; then
 	touch PRIVOXY_CONF
