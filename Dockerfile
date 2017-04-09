@@ -20,7 +20,6 @@ RUN apk upgrade --no-cache \
         mbedtls-dev \
         pcre-dev \
         tar \
-        privoxy \
         udns-dev \
     && curl -sSLO https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_LIBEV_VERSION/shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
     && tar -zxf shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
@@ -41,6 +40,7 @@ RUN apk upgrade --no-cache \
         )" \
     && apk add --no-cache --virtual .run-deps $runDeps \
     && apk del .build-deps \
+    && apk add --no-cache privoxy \
     && rm -rf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
         shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
         shadowsocks-libev-$SS_LIBEV_VERSION \
