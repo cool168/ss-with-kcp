@@ -49,6 +49,7 @@ ADD kcp2ss-server.sh /kcp2ss-server.sh
 ADD ss2kcp-client.sh /ss2kcp-client.sh
 ADD ss-local.sh /ss-local.sh
 ADD ss-server.sh /ss-server.sh
+ADD p2ss2kcp-client.sh /p2ss2kcp-client.sh
 RUN chmod +x /*.sh
 
 
