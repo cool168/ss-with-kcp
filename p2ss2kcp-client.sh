@@ -42,7 +42,7 @@ echo -e "Starting kcptun......"
 
 echo -e "Starting shadowsocks......"
 
-ss-local -s 127.0.0.1 -p $LOCAL_PORT -b 0.0.0.0 -l $SS_LOCAL_PORT -m $SS_SERVER_METHOD -k $SS_SERVER_PWD -t 60 -u -d
+ss-local -s 127.0.0.1 -p $LOCAL_PORT -b 0.0.0.0 -l $SS_LOCAL_PORT -m $SS_SERVER_METHOD -k $SS_SERVER_PWD -t 60 -u &
 sleep 1
 
 privoxy --no-daemon $PRIVOXY_CONF
