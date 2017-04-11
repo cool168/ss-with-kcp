@@ -1,13 +1,5 @@
 #!/bin/sh
 
-PRIVOXY_CONF="/etc/privoxy/privoxy.conf"
-
-if [ ! -f "$PRIVOXY_CONF" ]; then
-	touch PRIVOXY_CONF
-	echo listen-address 0.0.0.0:$HTTP > $PRIVOXY_CONF
-	echo forward-socks5 / 127.0.0.1:$SOCKS5 . >> $PRIVOXY_CONF
-fi
-
 echo ${LOCAL_PORT=12948}
 
 echo ${KCP_PORT='vps:29900'}
@@ -35,6 +27,14 @@ echo ${SS_LOCAL_PORT=8989}
 echo ${SS_SERVER_METHOD='aes-256-cfb'}
 
 echo ${SS_SERVER_PWD='cool168'}
+
+PRIVOXY_CONF="/etc/privoxy/privoxy.conf"
+
+if [ ! -f "$PRIVOXY_CONF" ]; then
+	touch PRIVOXY_CONF
+	echo listen-address 0.0.0.0:$HTTP > $PRIVOXY_CONF
+	echo forward-socks5 / 127.0.0.1:$SS_LOCAL_PORT . >> $PRIVOXY_CONF
+fi
 
 client_linux_amd64 -l 127.0.0.1:$LOCAL_PORT -r $KCP_PORT -mode $MODE -mtu $MTU -sndwnd $SNDWND -rcvwnd $RCVWND -crypt $CRYPT -key $KEY -conn $CONN -dscp $DSCP 2>&1 &
 
