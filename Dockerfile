@@ -9,7 +9,7 @@ ENV KCP_VERSION 20170525
 ENV KCPRAW_VERSION 20171121
 
 RUN apk upgrade --no-cache \
-    && apk add --no-cache bash tzdata libsodium net-tools iptables \
+    && apk add --no-cache bash tzdata libsodium \
     && apk add --no-cache --virtual .build-deps \
         autoconf \
         build-base \
@@ -31,13 +31,7 @@ RUN apk upgrade --no-cache \
     && curl -sSLO https://github.com/xtaci/kcptun/releases/download/v$KCP_VERSION/kcptun-linux-amd64-$KCP_VERSION.tar.gz \
     && tar -zxf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
     && mv server_linux_amd64 /usr/bin/server_linux_amd64 \
-    && mv client_linux_amd64 /usr/bin/client_linux_amd64 \   
-    && curl -sSLO https://github.com/ccsexyz/kcpraw/releases/download/v20171122/kcpraw-linux-amd64-$KCPRAW_VERSION.tar.gz \ 
-    && tar -zxf kcpraw-linux-amd64-$KCPRAW_VERSION.tar.gz \
-    && mv kcpraw_client_linux_amd64 /usr/bin/kcpraw_client_linux_amd64 \
-    && mv kcpraw_client_linux_amd64_pprof /usr/bin/kcpraw_client_linux_amd64_pprof \      
-    && mv kcpraw_server_linux_amd64 /usr/bin/kcpraw_server_linux_amd64 \
-    && mv kcpraw_server_linux_amd64_pprof /usr/bin/kcpraw_server_linux_amd64_pprof \      
+    && mv client_linux_amd64 /usr/bin/client_linux_amd64 \       
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && runDeps="$( \
@@ -61,7 +55,6 @@ ADD ss-server.sh /ss-server.sh
 ADD p2ss2kcp-client.sh /p2ss2kcp-client.sh
 ADD kcpraw-client.sh /kcpraw-client.sh
 RUN chmod +x /*.sh
-RUN chmod +x /usr/bin/kcpraw_client_linux_amd64
-RUN chmod +x /usr/bin/kcpraw_client_linux_amd64_pprof
+
 
 
