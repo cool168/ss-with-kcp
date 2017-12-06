@@ -4,7 +4,7 @@ echo ${LOCAL_PORT=':12948'}
 
 echo ${KCP_PORT='vps:39900'}
 
-echo ${MODE='-mode fast2 -ds 0 -ps 0 -nocomp'}
+echo ${MODE='fast2 -ds 0 -ps 0 -nocomp'}
 	
 echo ${MTU=1400}
 
