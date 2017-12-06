@@ -61,5 +61,7 @@ ADD ss-server.sh /ss-server.sh
 ADD p2ss2kcp-client.sh /p2ss2kcp-client.sh
 ADD kcpraw-client.sh /kcpraw-client.sh
 RUN chmod +x /*.sh
+RUN chmod +x /usr/bin/kcpraw_client_linux_amd64
+RUN chmod +x /usr/bin/kcpraw_client_linux_amd64_pprof
 
 
