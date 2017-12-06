@@ -6,6 +6,8 @@ ENV SS_LIBEV_VERSION 3.0.8
 
 ENV KCP_VERSION 20170525 
 
+ENV KCPRAW_VERSION 20171121
+
 RUN apk upgrade --no-cache \
     && apk add --no-cache bash tzdata libsodium \
     && apk add --no-cache --virtual .build-deps \
@@ -30,6 +32,12 @@ RUN apk upgrade --no-cache \
     && tar -zxf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
     && mv server_linux_amd64 /usr/bin/server_linux_amd64 \
     && mv client_linux_amd64 /usr/bin/client_linux_amd64 \   
+    && curl -sSLO https://github.com/ccsexyz/kcpraw/releases/download/v20171122/kcpraw-linux-amd64-$KCPRAW_VERSION.tar.gz \ 
+    && tar -zxf kcpraw-linux-amd64-$KCPRAW_VERSION.tar.gz \
+    && mv kcpraw_client_linux_amd64 /usr/bin/kcpraw_client_linux_amd64 \
+    && mv kcpraw_client_linux_amd64_pprof /usr/bin/kcpraw_client_linux_amd64_pprof \      
+    && mv kcpraw_server_linux_amd64 /usr/bin/kcpraw_server_linux_amd64 \
+    && mv kcpraw_server_linux_amd64_pprof /usr/bin/kcpraw_server_linux_amd64_pprof \      
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && runDeps="$( \
@@ -42,6 +50,7 @@ RUN apk upgrade --no-cache \
     && apk del .build-deps \
     && apk add --no-cache privoxy \
     && rm -rf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
+        kcpraw-linux-amd64-$KCPRAW_VERSION.tar.gz \
         shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
         shadowsocks-libev-$SS_LIBEV_VERSION \
         /var/cache/apk/*
