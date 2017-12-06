@@ -9,7 +9,7 @@ ENV KCP_VERSION 20170525
 ENV KCPRAW_VERSION 20171121
 
 RUN apk upgrade --no-cache \
-    && apk add --no-cache bash tzdata libsodium \
+    && apk add --no-cache bash tzdata libsodium iptables \
     && apk add --no-cache --virtual .build-deps \
         autoconf \
         build-base \
