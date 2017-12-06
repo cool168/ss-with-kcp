@@ -10,5 +10,4 @@ echo ${MTU=1400}
 
 echo ${KEY='cool168'}
 
-sleep 1
 kcpraw_client_linux_amd64 -l $LOCAL_PORT -r $KCP_PORT  -key $KEY -mtu $MTU -mode $MODE
