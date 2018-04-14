@@ -4,7 +4,7 @@ ENV TZ 'Asia/Shanghai'
 
 ENV SS_LIBEV_VERSION 3.0.8
 
-ENV KCP_VERSION 20170525 
+ENV KCP_VERSION 20180316 
 
 ENV KCPRAW_VERSION 20171121
 
@@ -44,7 +44,6 @@ RUN apk upgrade --no-cache \
     && apk del .build-deps \
     && apk add --no-cache privoxy \
     && rm -rf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
-        kcpraw-linux-amd64-$KCPRAW_VERSION.tar.gz \
         shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
         shadowsocks-libev-$SS_LIBEV_VERSION \
         /var/cache/apk/*
@@ -53,7 +52,6 @@ ADD ss2kcp-client.sh /ss2kcp-client.sh
 ADD ss-local.sh /ss-local.sh
 ADD ss-server.sh /ss-server.sh
 ADD p2ss2kcp-client.sh /p2ss2kcp-client.sh
-ADD kcpraw-client.sh /kcpraw-client.sh
 RUN chmod +x /*.sh
 
 
