@@ -6,8 +6,6 @@ ENV SS_LIBEV_VERSION 3.0.8
 
 ENV KCP_VERSION 20180316 
 
-ENV KCPRAW_VERSION 20171121
-
 RUN apk upgrade --no-cache \
     && apk add --no-cache bash tzdata libsodium \
     && apk add --no-cache --virtual .build-deps \
