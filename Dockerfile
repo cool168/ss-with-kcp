@@ -43,7 +43,15 @@ RUN \
     && mv client_linux_amd64 /usr/bin/client_linux_amd64 \       
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
+    && runDeps="$( \
+        scanelf --needed --nobanner /usr/bin/ss-* \
+            | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
+            | xargs -r apk info --installed \
+            | sort -u \
+        )" \
+    && apk add --no-cache --virtual .run-deps $runDeps \
     && apk del .build-deps \
+    && apk add --no-cache privoxy \
     && rm -rf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
         shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
         shadowsocks-libev-$SS_LIBEV_VERSION \
