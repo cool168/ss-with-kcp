@@ -43,7 +43,7 @@ RUN \
     && mv client_linux_amd64 /usr/bin/client_linux_amd64 \       
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
-    && apk del .build-deps
+    && apk del .build-deps \
     && rm -rf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
         shadowsocks-libev-$SS_LIBEV_VERSION.tar.gz \
         shadowsocks-libev-$SS_LIBEV_VERSION \
