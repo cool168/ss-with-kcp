@@ -36,8 +36,13 @@ if [ ! -f "$PRIVOXY_CONF" ]; then
 	echo forward-socks5 / 127.0.0.1:$SS_LOCAL_PORT . >> $PRIVOXY_CONF
 fi
 
-client_linux_amd64 -l 127.0.0.1:$LOCAL_PORT -r $KCP_PORT -mode $MODE -mtu $MTU -sndwnd $SNDWND -rcvwnd $RCVWND -crypt $CRYPT -key $KEY -conn $CONN -dscp $DSCP 2>&1 &
-
+sleep 1
+if [ $SHOW_LOGS = "yes" ]
+then
+   client_linux_amd64 -l 127.0.0.1:$LOCAL_PORT -r $KCP_PORT -mode $MODE -mtu $MTU -sndwnd $SNDWND -rcvwnd $RCVWND -crypt $CRYPT -key $KEY -conn $CONN -dscp $DSCP 2>&1 &
+else
+   client_linux_amd64 -l 127.0.0.1:$LOCAL_PORT -r $KCP_PORT -mode $MODE -mtu $MTU -sndwnd $SNDWND -rcvwnd $RCVWND -crypt $CRYPT -key $KEY -conn $CONN -dscp $DSCP >/dev/null 2>&1 &
+fi
 echo -e "Starting kcptun......"
 
 echo -e "Starting shadowsocks......"
