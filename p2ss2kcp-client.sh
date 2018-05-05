@@ -6,6 +6,8 @@ echo ${KCP_PORT='vps:29900'}
 
 echo ${SHOW_LOGS='yes'}
 
+echo ${HTTP=18090}
+
 echo ${MODE='fast2 -nocomp -autoexpire 300'}
 	
 echo ${MTU=1400}
