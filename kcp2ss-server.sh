@@ -20,11 +20,17 @@ echo ${SS_SERVER_METHOD='aes-256-cfb'}
 
 echo ${SS_SERVER_PWD='cool168'}
 
+echo ${SS_SERVER_PASSTHROUGH='no'}
+
 server_linux_amd64 -l $KCP_PORT -t 127.0.0.1:$SS_SERVER_PORT -mode $MODE -mtu $MTU -sndwnd $SNDWND -rcvwnd $RCVWND -crypt $CRYPT -key $KEY 2>&1 &
 
 echo -e "Starting kcptun......"
 
 echo -e "Starting shadowsocks......"
 
-ss-server -s 127.0.0.1 -p $SS_SERVER_PORT -m $SS_SERVER_METHOD -k $SS_SERVER_PWD -t 60 -u
-
+if [ $SS_SERVER_PASSTHROUGH = "yes" ]
+then
+   ss-server -s :: -s 0.0.0.0 -p $SS_SERVER_PORT -m $SS_SERVER_METHOD -k $SS_SERVER_PWD -t 60 -u
+else
+   ss-server -s 127.0.0.1 -p $SS_SERVER_PORT -m $SS_SERVER_METHOD -k $SS_SERVER_PWD -t 60 -u
+fi
