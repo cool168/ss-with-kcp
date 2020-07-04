@@ -1,15 +1,16 @@
-FROM alpine:3.7
+FROM alpine:3.11
 
 ENV TZ 'Asia/Shanghai'
 
 ENV SS_LIBEV_VERSION 3.1.3
 
-ENV KCP_VERSION 20200201 
+ENV KCP_VERSION 20200701 
 
 RUN \
     set -ex \
     && apk add --no-cache --virtual .build-deps \
         curl \
+        iptables \
         autoconf \
         build-base \
         libtool \
