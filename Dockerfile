@@ -45,7 +45,6 @@ RUN set -ex && \
     apk del .build-deps && \
     apk add --no-cache privoxy && \    
     cd / && rm -rf /tmp/* 
-
     
 ADD kcp2ss-server.sh /kcp2ss-server.sh
 ADD ss2kcp-client.sh /ss2kcp-client.sh
