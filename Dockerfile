@@ -20,7 +20,6 @@ RUN set -ex && \
         mbedtls-dev \
         pcre-dev \
         tar \
-        privoxy \        
         c-ares-dev && \
     mkdir -p /tmp/ss && \
     cd /tmp/ss && \
@@ -28,6 +27,13 @@ RUN set -ex && \
     tar xz --strip 1 && \
     ./configure --prefix=/usr --disable-documentation && \
     make install && \
+    curl -sSLO https://github.com/xtaci/kcptun/releases/download/v$KCP_VERSION/kcptun-linux-amd64-$KCP_VERSION.tar.gz && \
+    tar -zxf kcptun-linux-amd64-$KCP_VERSION.tar.gz && \
+    mv server_linux_amd64 /usr/bin/server_linux_amd64 && \
+    mv client_linux_amd64 /usr/bin/client_linux_amd64 && \       
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo "Asia/Shanghai" > /etc/timezone && \    
+    rm -rf kcptun-linux-amd64-$KCP_VERSION.tar.gz && \    
     ls /usr/bin/ss-* | xargs -n1 setcap 'cap_net_bind_service+ep' && \
     runDeps="$( \
         scanelf --needed --nobanner /usr/bin/ss-* \
@@ -37,14 +43,9 @@ RUN set -ex && \
     )" && \
     apk add --no-cache --virtual .run-deps $runDeps && \
     apk del .build-deps && \
-    cd / && rm -rf /tmp/*  \
-    && curl -sSLO https://github.com/xtaci/kcptun/releases/download/v$KCP_VERSION/kcptun-linux-amd64-$KCP_VERSION.tar.gz \
-    && tar -zxf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
-    && mv server_linux_amd64 /usr/bin/server_linux_amd64 \
-    && mv client_linux_amd64 /usr/bin/client_linux_amd64 \       
-    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone \    
-    && rm -rf kcptun-linux-amd64-$KCP_VERSION.tar.gz
+    apk add --no-cache privoxy && \    
+    cd / && rm -rf /tmp/* 
+
     
 ADD kcp2ss-server.sh /kcp2ss-server.sh
 ADD ss2kcp-client.sh /ss2kcp-client.sh
