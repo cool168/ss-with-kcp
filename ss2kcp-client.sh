@@ -28,6 +28,8 @@ echo ${SS_SERVER_METHOD='aes-256-cfb'}
 
 echo ${SS_SERVER_PWD='cool168'}
 
+echo ${SS_TIMEOUT=300}
+
 if [ $SHOW_LOGS = "yes" ]
 then
    client_linux_amd64 -l :$LOCAL_PORT -r $KCP_PORT -mode $MODE -mtu $MTU -sndwnd $SNDWND -rcvwnd $RCVWND -crypt $CRYPT -key $KEY -conn $CONN -dscp $DSCP 2>&1 &
@@ -38,5 +40,5 @@ echo -e "Starting kcptun......"
 
 echo -e "Starting shadowsocks......"
 
-ss-local -s 127.0.0.1 -p $LOCAL_PORT -b 0.0.0.0 -l $SS_LOCAL_PORT -m $SS_SERVER_METHOD -k $SS_SERVER_PWD -t 60 -u
+ss-local -s 127.0.0.1 -p $LOCAL_PORT -b 0.0.0.0 -l $SS_LOCAL_PORT -m $SS_SERVER_METHOD -k $SS_SERVER_PWD -t $SS_TIMEOUT -u
 
