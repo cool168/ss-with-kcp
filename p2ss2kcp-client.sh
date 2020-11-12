@@ -30,6 +30,8 @@ echo ${SS_SERVER_METHOD='aes-256-cfb'}
 
 echo ${SS_SERVER_PWD='cool168'}
 
+echo ${SS_TIMEOUT=300}
+
 PRIVOXY_CONF="/etc/privoxy/privoxy.conf"
 
 if [ ! -f "$PRIVOXY_CONF" ]; then
@@ -49,7 +51,7 @@ echo -e "Starting kcptun......"
 
 echo -e "Starting shadowsocks......"
 
-ss-local -s 127.0.0.1 -p $LOCAL_PORT -b 0.0.0.0 -l $SS_LOCAL_PORT -m $SS_SERVER_METHOD -k $SS_SERVER_PWD -t 60 -u &
+ss-local -s 127.0.0.1 -p $LOCAL_PORT -b 0.0.0.0 -l $SS_LOCAL_PORT -m $SS_SERVER_METHOD -k $SS_SERVER_PWD -t $SS_TIMEOUT -u &
 sleep 1
 
 privoxy --no-daemon $PRIVOXY_CONF
