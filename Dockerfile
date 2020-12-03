@@ -43,7 +43,8 @@ RUN set -ex && \
     )" && \
     apk add --no-cache --virtual .run-deps $runDeps && \
     apk del .build-deps && \
-    apk add --no-cache privoxy && \    
+    apk add --no-cache privoxy \
+        rng-tools && \    
     cd / && rm -rf /tmp/* 
     
 ADD kcp2ss-server.sh /kcp2ss-server.sh
