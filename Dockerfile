@@ -4,7 +4,7 @@ ENV TZ 'Asia/Shanghai'
 
 ENV SS_LIBEV_VERSION 3.3.5
 
-ENV KCP_VERSION 20201126 
+ENV KCP_VERSION 20210103 
 
 RUN set -ex && \
     apk add --no-cache \
