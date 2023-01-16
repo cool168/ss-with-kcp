@@ -55,3 +55,4 @@ ADD p2ss2kcp-client.sh /p2ss2kcp-client.sh
 ADD kcp-client.sh /kcp-client.sh
 ADD kcp-server.sh /kcp-server.sh
 RUN chmod +x /*.sh
+CMD ./kcp2ss-server.sh
