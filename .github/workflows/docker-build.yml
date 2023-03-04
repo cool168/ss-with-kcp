@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ss-with-kcp:20221015
+      run: docker build . --file Dockerfile --tag ss-with-kcp:20230214
