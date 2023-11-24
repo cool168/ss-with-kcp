@@ -16,7 +16,7 @@ echo ${KEY='cool168'}
 
 echo ${SS_SERVER_PORT=9090}
 
-echo ${SS_SERVER_METHOD='aes-256-cfb'}
+echo ${SS_SERVER_METHOD='chacha20-ietf-poly1305'}
 
 echo ${SS_SERVER_PWD='cool168'}
 
